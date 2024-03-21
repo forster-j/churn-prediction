@@ -166,3 +166,4 @@ cython_debug/
 # individual folders
 data/
 .DS_Store
+model/
