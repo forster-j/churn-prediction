@@ -10,7 +10,7 @@ Project Overview
 *This project serves as a portfolio project. Team members are: [forster-j](https://github.com/forster-j), [PAJJAP](https://github.com/PAJJAP) and [TopAudioData](https://github.com/TopAudioData).*
 
 ## About the Dataset
-Info about dataset
+We used the following dataset from kaggle: [Customer Churn](https://www.kaggle.com/datasets/undersc0re/predict-the-churn-risk-rate/data)
 
 > datasets etc. 
 
