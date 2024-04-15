@@ -43,7 +43,7 @@ def prediction_matrices(model, X_test, X_train, y_test, y_train, model_name = " 
     classification_report(y_test, y_pred)) 
 
     #confusion matrix train
-    conf_matrix = confusion_matrix(y_test, y_pred)
+    conf_matrix = confusion_matrix(y_train, y_pred_train)
 
     plt.figure(figsize=(6, 4))
     sns.heatmap(conf_matrix, annot=True, cmap="Blues", fmt="d", cbar=True)
@@ -51,11 +51,11 @@ def prediction_matrices(model, X_test, X_train, y_test, y_train, model_name = " 
     plt.ylabel('True')
 
     try:
-        plt.title('Confusion Matrix Test Data ' + model_name)
+        plt.title('Confusion Matrix Train Data ' + model_name)
         
     except:
         print("Model_name not a string")
-        plt.title('Confusion Matrix Test Data') 
+        plt.title('Confusion Matrix Train Data') 
     plt.show()
 
     #confusion matrix test
@@ -66,9 +66,9 @@ def prediction_matrices(model, X_test, X_train, y_test, y_train, model_name = " 
     plt.xlabel('Prediction')
     plt.ylabel('True')
     try:
-        plt.title('Confusion Matrix Train Data ' + model_name)
+        plt.title('Confusion Matrix Test Data ' + model_name)
     except:
-        plt.title('Confusion Matrix Train Data')
+        plt.title('Confusion Matrix Test Data')
         print("Model_name not a string")
     plt.show()
 
