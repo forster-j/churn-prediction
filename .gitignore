@@ -165,6 +165,6 @@ catboost_info/
 
 
 # individual folders
-data/
+data/*
 .DS_Store
-model/
+model/*
