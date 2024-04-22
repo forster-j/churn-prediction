@@ -73,3 +73,46 @@ def prediction_matrices(model, X_test, X_train, y_test, y_train, model_name = " 
     plt.show()
 
     pass
+
+
+
+def plot_categorical_features(df, features, hue=None):
+    # Check if the hue column exists in the DataFrame
+    if hue not in df.columns:
+        print(f"Error: The DataFrame does not contain a '{hue}' column.")
+        return
+
+    # Define the order of the colors
+    hue_order = df[hue].value_counts().index
+
+    # Loop over each categorical column
+    for plot in features:
+        # Create subplots for absolute and relative views
+        fig, axes = plt.subplots(1, 2, figsize=(10, 5))
+
+        # Absolute view: Countplot
+        sns.countplot(df, x=plot, hue=hue, ax=axes[0], hue_order=hue_order)
+        axes[0].set_title('Absolute numbers classification outcomes')
+
+        # Rotate x-axis labels if there are more than 3 unique values or if the labels are long
+        if df[plot].nunique() > 3 or df[plot].nunique() > 2 and len(df[plot].unique()[0]) > 10:
+            axes[0].tick_params(axis='x', rotation=45)
+            axes[0].set_xticklabels(axes[0].get_xticklabels(), ha='right')
+
+        # Relative view: Barplot
+        df_prop = df.groupby(plot)[hue].value_counts(normalize=True).rename('proportion').reset_index()
+        sns.barplot(data=df_prop, x = plot, y='proportion', hue = hue, ax = axes[1], hue_order=hue_order)
+        axes[1].set_title('Relative view for each categorical value: classification outcomes')
+
+        # Rotate x-axis labels if there are more than 3 unique values or if the labels are long
+        if df[plot].nunique() > 3 or df[plot].nunique() > 2 and len(df[plot].unique()[0]) > 10:
+            axes[1].tick_params(axis='x', rotation=45)
+            axes[1].set_xticklabels(axes[1].get_xticklabels(), ha='right')
+
+        # Adjust layout
+        plt.tight_layout()
+
+        # Show plot
+        plt.show()
+    
+    return None
