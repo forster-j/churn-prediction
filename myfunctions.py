@@ -92,7 +92,7 @@ def plot_categorical_features(df, features, hue=None):
 
         # Absolute view: Countplot
         sns.countplot(df, x=plot, hue=hue, ax=axes[0], hue_order=hue_order)
-        axes[0].set_title('Absolute numbers classification outcomes')
+        axes[0].set_title(f'Absolute numbers: {hue}')
 
         # Rotate x-axis labels if there are more than 3 unique values or if the labels are long
         if df[plot].nunique() > 3 or df[plot].nunique() > 2 and len(df[plot].unique()[0]) > 10:
@@ -102,7 +102,7 @@ def plot_categorical_features(df, features, hue=None):
         # Relative view: Barplot
         df_prop = df.groupby(plot)[hue].value_counts(normalize=True).rename('proportion').reset_index()
         sns.barplot(data=df_prop, x = plot, y='proportion', hue = hue, ax = axes[1], hue_order=hue_order)
-        axes[1].set_title('Relative view for each categorical value: classification outcomes')
+        axes[1].set_title(f'Relative view for each categorical value: {hue}')
 
         # Rotate x-axis labels if there are more than 3 unique values or if the labels are long
         if df[plot].nunique() > 3 or df[plot].nunique() > 2 and len(df[plot].unique()[0]) > 10:
