@@ -76,7 +76,19 @@ def prediction_matrices(model, X_test, X_train, y_test, y_train, model_name = " 
 
 
 
-def plot_categorical_features(df, features, hue=None):
+def plot_categorical_features(df, features, hue):
+    """
+    Plots categorical features in a DataFrame.
+
+    This function creates two subplots for each categorical feature: 
+    one showing the absolute numbers of classification outcomes, 
+    and the other showing the relative view for each categorical value.
+
+    Parameters:
+    df (pandas.DataFrame): The DataFrame to plot.
+    features (list): A list of strings representing the names of the categorical columns to plot.
+    hue (str): The name of the column in df to plot against.
+    """
     # Check if the hue column exists in the DataFrame
     if hue not in df.columns:
         print(f"Error: The DataFrame does not contain a '{hue}' column.")
