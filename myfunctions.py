@@ -1,4 +1,5 @@
 from sklearn.metrics import classification_report, roc_auc_score, confusion_matrix, accuracy_score
+import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -128,3 +129,46 @@ def plot_categorical_features(df, features, hue):
         plt.show()
     
     return None
+
+def save_metrics(model_name,accuracy=None,precision=None,recall=None,F1=None,ROC_AUC=None):
+    '''
+    Save model metrics to ./data/df_metrics.pkl.
+
+    Parameters:
+    - model_name (str): Name of the model.
+    - accuracy (float): Accuracy score of the model.
+    - precision (float): Precision score of the model.
+    - recall (float): Recall score of the model.
+    - F1 (float): F1 score of the model.
+    - ROC_AUC (float): ROC AUC score of the model.
+
+    Returns:
+    - Prints a message indicating successful saving of metrics.
+    '''
+    # check if df_metrics already exists, create it if not
+    columns = ['model', 'accuracy', 'precision','recall', 'F1', 'ROC_AUC']
+    try:
+            df_metrics = pd.read_pickle('./data/df_metrics.pkl')
+            print('df loaded')
+    except:
+            df_metrics = pd.DataFrame(columns=columns)
+            df_metrics.to_pickle('./data/df_metrics.pkl')
+            print('df created')
+
+    # add model's metrics to df_metrics
+    new_row = {'model': model_name, 
+            'accuracy': accuracy, 
+            'precision': precision, 
+            'recall': recall, 
+            'F1': F1, 
+            'ROC_AUC': ROC_AUC,
+            }
+    
+    # save new row to df_metrics
+    index = new_row['model']
+    df_metrics.loc[index] = new_row
+
+    # save df_metrics.pkl
+    df_metrics.to_pickle('./data/df_metrics.pkl')
+    
+    return print(f'Metrics for {model_name} saved successfully!')
