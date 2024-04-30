@@ -160,11 +160,11 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-# automatically created folders
+# automatically created
 catboost_info/
-
+.python_version
+.DS_Store
 
 # individual folders
 data/*
-.DS_Store
 model/*
