@@ -1,7 +1,9 @@
-from sklearn.metrics import classification_report, roc_auc_score, confusion_matrix, accuracy_score
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
 import seaborn as sns
+
+from sklearn.metrics import classification_report, roc_auc_score, confusion_matrix, accuracy_score
+
 
 def prediction_matrices(model, X_test, X_train, y_test, y_train, model_name = " "):
     """
